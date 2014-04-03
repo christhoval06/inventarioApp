@@ -1,0 +1,156 @@
+@import "flaticon.css";
+
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #272125;
+}
+
+.fullscreen_bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.fullscreen_bg > .container {
+    margin-top: 15%;
+}
+
+.login-title{
+    color: #867982;
+}
+
+.login-form-icon {
+
+}
+
+.form-signin .form-group, .form-signin .btn-inline, .form-signin .form-control,.login-form-icon, .login-form-input, .login-form-block {
+    display: inline-block;
+}
+
+.form-signin .form-group{
+    min-width: 80%;
+    width: 80%;
+}
+
+.form-signin button {
+    margin: 0 15px 0 15px;
+    height: 115px;
+}
+
+.form-signin {
+    max-width: 80%;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading, .form-signin {
+    margin-bottom: 10px;
+}
+
+.form-signin .form-control:focus {
+    border-color:transparent;
+    outline: 0;
+    -webkit-box-shadow:none;
+    box-shadow: none;
+}
+
+.form-signin .btn-inline {
+
+}
+
+.form-signin .input-group, .form-signin input {
+    min-height: 50px;
+}
+
+.form-signin .btn-primary {
+    color: #fff;
+    background-color: #f4462e;
+    border-color: #f4462e;
+}
+
+.form-signin .btn-primary i{
+    color: #fff;
+    font-size: 30px;
+}
+
+
+.form-signin .input-group-addon, .form-signin input {
+    background-color: #857a82;
+    color: #FFF;
+    border: none;
+}
+
+.form-signin input{
+    font-size: 20px;
+}
+
+.form-signin .focus{
+    background-color: #FFF;
+    color: #f4462e;
+}
+
+
+.form-signin .input-group-addon, .form-signin .input-group {
+    margin: 15px 0 15px 0;
+}
+
+
+.form-signin input::-webkit-input-placeholder {
+   color: #FFF;
+}
+
+.form-signin input:-moz-placeholder { /* Firefox 18- */
+   color: #FFF;
+}
+
+.form-signin input::-moz-placeholder {  /* Firefox 19+ */
+   color: #FFF;
+}
+
+.form-signin input:-ms-input-placeholder {
+   color: #FFF;
+}
+
+
+.rotate {
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 1000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 1000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 1000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
