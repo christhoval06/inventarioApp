@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  if login
+    block extraHeader
+      link(rel='stylesheet', href='/css/flat_login.css')
+    .fullscreen_bg
+      .container
+        form.form-signin.form-inline
+          h1.text-muted.login-title Login
+          .form-group
+            .input-group
+              input.form-control(type='text', placeholder='Usuario')
+              span.input-group-addon
+                span.flaticon-user
+            .input-group
+              input.form-control(type='password', placeholder='Clave')
+              span.input-group-addon
+                span.flaticon-key
+          button.btn.btn-lg.btn-primary.btn-inline
+            div
+              i.flaticon-unlock
+
+          script(type='text/javascript').
+            $(function(){
+            $('.form-signin input').focus(function(){
+            $(this).addClass('focus')
+            $(this).parent().find('.input-group-addon').addClass('focus')
+            }).focusout(function(){
+            $(this).removeClass('focus')
+            $(this).parent().find('.input-group-addon').removeClass('focus')
+            });
+             $('.form-signin button').click(function(e){
+             e.preventDefault();
+             $(this).find('i').removeClass().addClass('flaticon-sync');
+             $(this).find('div').addClass('rotate');
+             });
+            });
