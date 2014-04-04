@@ -5,10 +5,12 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
+var mongodb = require('./routes/mongodb');
 var http = require('http');
 var path = require('path');
 
 var app = express();
+var inventariodb = mongodb.inventariodb;
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -30,7 +32,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/inicio', routes.inicio)
+app.get('/usuarios', user.list);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
