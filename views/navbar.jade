@@ -1,31 +1,29 @@
 //
    Created by cristobal on 04/04/14.
-extends layout
 
-block content
-    nav.navbar.navbar-default(role='navigation')
-        .container-fluid
-            .navbar-header
-                button.navbar-toggle(type='button', data-toggle='collapse', data-target='#menu')
-                    span.sr-only Toggle navigation
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                a.navbar-brand(href='#') Inventario
-            #menu.collapse.navbar-collapse
-                ul.nav.navbar-nav
-                    li.active
-                        a(href='#') Productos
-                    li
-                        a(href='#') Facturas
-                    li.dropdown
-                        a.dropdown-toggle(href='#', data-toggle='dropdown')
-                            | Configuraciones
-                            b.caret
-                        ul.dropdown-menu
-                            li
-                                a(href='#') Usuarios
-                ul.nav.navbar-nav.navbar-right
-                    li
-                        a(href='#') Salir
+nav.navbar.navbar-default(role='navigation')
+    .container-fluid
+        .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='#menu')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            a.navbar-brand(href='#') Inventario
+        #menu.collapse.navbar-collapse
+            ul.nav.navbar-nav
+                li.active
+                    a(href='./ventas') Ventas
+                li
+                    a(href='./compras') Compras
+                li.dropdown
+                    a.dropdown-toggle(href='#', data-toggle='dropdown')
+                        | Configuraciones
+                        b.caret
+                    ul.dropdown-menu
+                        li
+                            a(href='./productos') Productos
+            ul.nav.navbar-nav.navbar-right
+                li
+                    a(href='#') Salir
 

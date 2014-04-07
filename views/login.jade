@@ -1,26 +1,29 @@
 extends layout
 
 block content
-    if login
-        block extraHeader
-            link(rel='stylesheet', href='/css/flat_login.css')
-        .fullscreen_bg
-            .container
-                form.form-signin.form-inline
-                    h1.text-muted.login-title Login
-                    .form-group
-                        .input-group
-                            input.form-control(type='text', placeholder='Usuario')
-                            span.input-group-addon
-                                span.flaticon-user
-                        .input-group
-                            input.form-control(type='password', placeholder='Clave')
-                            span.input-group-addon
-                                span.flaticon-key
-                    button.btn.btn-lg.btn-primary.btn-inline
-                        div
-                            i.flaticon-unlock
+    block extraHeader
+        link(rel='stylesheet', href='/css/flat_login.css')
+    .fullscreen_bg
+        .container
+            form#login-form.form-signin.form-inline( method="post")
+                h1.text-muted.login-title Login
+                .form-group
+                    .input-group
+                        input#usuario.form-control(type='text', name='usuario', placeholder='Usuario')
+                        span.input-group-addon
+                            span.flaticon-user
+                    .input-group
+                        input#clave.form-control(type='password',name='clave', placeholder='Clave')
+                        span.input-group-addon
+                            span.flaticon-key
+                button.btn.btn-lg.btn-primary.btn-inline(type="submit")
+                    div
+                        i.flaticon-unlock
+
+    include modals/alert
 
 block scripts
+    script(src='/vendor/jquery.form.min.js')
     script(src='/js/views/login.js')
-	script(src='/js/controllers/loginController.js')
+    script(src='/js/controllers/LoginController.js')
+    script(src='/js/utilities/LoginValidator.js')

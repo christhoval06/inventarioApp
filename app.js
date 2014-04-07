@@ -4,13 +4,10 @@
 
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
-var mongodb = require('./routes/mongodb');
 var http = require('http');
 var path = require('path');
 
 var app = express();
-var inventariodb = mongodb.inventariodb;
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -31,9 +28,25 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/inicio', routes.inicio)
-app.get('/usuarios', user.list);
+require('./routes/login')(app);
+
+app.post('/signup', function (req, res) {
+    AM.addNewAccount({
+        name: req.param('name'),
+        email: req.param('email'),
+        user: req.param('user'),
+        pass: req.param('pass'),
+        country: req.param('country')
+    }, function (e) {
+        if (e) {
+            res.send(e, 400);
+        } else {
+            res.send('ok', 200);
+        }
+    });
+});
+
+app.get('/inicio', routes.inicio);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
