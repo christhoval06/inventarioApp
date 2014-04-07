@@ -7,5 +7,12 @@ extends layout
 block content
     include navbar
 
-    
+    .container-fluid
+        form#producto.form-horizontal(method='POST', role='form')
+            input(name='productoid', type='hidden', value='#{producto.id}')
+            .form-group
+                .input-group
+                    span.input-group-addon
+                        label(for='codigo') Codigo
+                    input#codigo.form-control(type='text',name='codigo', placeholder='Codigo', value='#{producto.codigo}')
 

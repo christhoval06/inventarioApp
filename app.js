@@ -29,22 +29,7 @@ if ('development' == app.get('env')) {
 }
 
 require('./routes/login')(app);
-
-app.post('/signup', function (req, res) {
-    AM.addNewAccount({
-        name: req.param('name'),
-        email: req.param('email'),
-        user: req.param('user'),
-        pass: req.param('pass'),
-        country: req.param('country')
-    }, function (e) {
-        if (e) {
-            res.send(e, 400);
-        } else {
-            res.send('ok', 200);
-        }
-    });
-});
+require('./routes/productos')(app);
 
 app.get('/inicio', routes.inicio);
 
