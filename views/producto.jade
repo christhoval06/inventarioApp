@@ -5,14 +5,49 @@
 extends layout
 
 block content
+    link(rel='stylesheet', href='/css/form-bootstrap.css')
     include navbar
 
-    .container-fluid
+    .container
         form#producto.form-horizontal(method='POST', role='form')
-            input(name='productoid', type='hidden', value='#{producto.id}')
+            input(name='_id', type='hidden', value='#{producto.id}')
             .form-group
                 .input-group
                     span.input-group-addon
                         label(for='codigo') Codigo
                     input#codigo.form-control(type='text',name='codigo', placeholder='Codigo', value='#{producto.codigo}')
+            .form-group
+                .input-group
+                    span.input-group-addon
+                        label(for='descripcion') Descripción
+                    input#descripcion.form-control(type='text',name='descripcion', placeholder='Descripción', value='#{producto.descripcion}')
+            .form-group
+                .input-group
+                    span.input-group-addon
+                        label(for='costo') Precio
+                    input#costo.form-control(type='text',name='costo', placeholder='Costo', value='#{producto.costo}')
+            .form-group
+                .input-group
+                    span.input-group-addon
+                        label(for='inventario') Inventario
+                    input#inventario.form-control(type='text',name='inventario', value='#{producto.inventario}')
 
+            .form-group
+                .input-group
+                    span.input-group-addon
+                        label(for='vendidos') Vendidos
+                    input#vendidos.form-control(type='text',name='vendidos', value='#{producto.vendidos}')
+
+            .form-group
+                .input-group
+                    span.input-group-addon
+                        label(for='comprados') Comprados
+                    input#comprados.form-control(type='text',name='comprados', value='#{producto.comprados}')
+
+            button.btn.btn-lg.btn-primary.btn-inline(type="submit") #{btn}
+
+
+block scripts
+    script(src='/vendor/jquery.form.min.js')
+    script(src='/js/views/producto.js')
+    script(src='/js/controllers/ProductoController.js')
