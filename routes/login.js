@@ -8,13 +8,12 @@ module.exports = function (app) {
 
     app.get('/', function (req, res) {
         // verifica si los datos del usuario estan guardados en las cookies
-        if (req.cookies.usuario == undefined || req.cookies.clave== undefined) {
-            res.render('login', { title: 'Hola' });
+        if (req.cookies.usuario === undefined || req.cookies.clave=== undefined) {
+            res.redirect('/');
         } else {
-            console.log('login automatico ');
             // login automatico
             cuentasManager.autoLogin(req.cookies.usuario, req.cookies.clave, function (o) {
-                if (o != null) {
+                if (o !== null) {
                     req.session.usuario = o;
                 } else {
                     res.render('login', { title: 'Hola' });

@@ -56,8 +56,8 @@ exports.usuarios = mongoose.model( 'usuarios', usuarios );
 
 var connection = mongoose.connect('mongodb://127.0.0.1/inventariodb', function(err){
     if (err){
-        throw err;
         console.log(err.message);
+        throw err;
     }
     console.log('conectado correctamente');
 });
