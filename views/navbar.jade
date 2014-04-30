@@ -25,5 +25,10 @@ nav.navbar.navbar-default(role='navigation')
                             a(href='./producto') Productos
             ul.nav.navbar-nav.navbar-right
                 li
-                    a(href='#') Salir
+                    a.logout
+                        | Salir
+                        b.glyphicon.glyphicon-log-out
+
+include modals/alert
+include modals/confirm
 

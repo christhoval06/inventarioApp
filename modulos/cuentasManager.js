@@ -23,6 +23,7 @@ exports.autoLogin = function (usuario, clave, callback) {
 }
 
 exports.manualLogin = function (usuario, clave, callback) {
+    console.log("manuallogin");
     usuarios.findOne({usuario: usuario}, function (e, o) {
         if (o == null) {
             callback('user-not-found');

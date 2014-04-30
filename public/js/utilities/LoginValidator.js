@@ -6,12 +6,12 @@
 
 function LoginValidator() {
 
-    this.loginErrors = $('#myAlert');
+    this.loginErrors = $('.modal.alerta');
     this.loginErrors.modal({ show: false, keyboard: true, backdrop: true });
 
     this.showLoginError = function (t, m) {
-        $('#myAlert .modal-header h4').text(t);
-        $('#myAlert .modal-body p').text(m);
+        $('.modal.alerta .modal-header h4').text(t);
+        $('.modal.alerta .modal-body p').text(m);
         this.loginErrors.modal('show');
     }
 

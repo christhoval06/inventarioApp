@@ -3,6 +3,7 @@
  */
 
 var cuentasManager = require('../modulos/cuentasManager');
+var moment = require('moment');
 
 module.exports = function (app) {
 
@@ -23,12 +24,13 @@ module.exports = function (app) {
     });
 
     app.post('/', function (req, res) {
+        console.log("/");
         cuentasManager.manualLogin(req.param('usuario'), req.param('clave'), function (e, o) {
+            console.log("//");
             if (!o) {
                 res.send(e, 400);
             } else {
                 req.session.usuario = o;
-                console.log(req.param('recordarme'));
                 if (req.param('recordarme') == 'true') {
                     res.cookie('usuario', o.usuario, { maxAge: 900000 });
                     res.cookie('clave', o.clave, { maxAge: 900000 });
@@ -38,14 +40,14 @@ module.exports = function (app) {
         });
     });
 
-/*
+
     app.get('/signup', function (req, res) {
         cuentasManager.agregarNuevoUsuario({
             usuario: 'christhoval',
             nombre: 'Christhoval Barba',
             clave: 'c706180t',
             tipo: 7,
-            activo: 1
+            activo: true
         }, function (e) {
             if (e) {
                 res.send(e, 400);
@@ -54,6 +56,4 @@ module.exports = function (app) {
             }
         });
     });
-*/
-
 }

@@ -1,10 +1,12 @@
 
-.modal-confirm.modal.hide.fade
-    div.modal-header
-        button.close(data-dismiss='modal') x
-        h3
-    div.modal-body
-        p
-    div.modal-footer
-        button(data-dismiss="modal").cancel.btn Cancel
-        button.submit.btn Ok
+.modal.fade.confirm(tabindex='-1', role='dialog', aria-labelledby='modal-title', aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4#modal-title.modal-title
+            .modal-body
+                p
+            .modal-footer
+                button.btn.btn-warning(data-dismiss='modal') Cancel
+                button.submit.btn.btn-success Ok

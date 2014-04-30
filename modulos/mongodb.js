@@ -1,8 +1,10 @@
 /**
  * Created by cristobal on 04/04/14.
  */
-var mongoose = require( 'mongoose' );
-var Schema   = mongoose.Schema,
+
+
+var mongoose = require( 'mongoose' ),
+Schema   = mongoose.Schema,
 ObjectId = Schema.ObjectId;
 
 /*
@@ -47,17 +49,14 @@ var usuarios = new Schema({
     nombre: { type: String, required: true},
     clave: { type: String, required: true},
     tipo: { type: Number, min: 0, max: 7, default: 0 },
-    activo: { type: Number, min: 0, max: 1, default: 1 },
-    fc : { type: Date, default: Date.now }
-})
-
+    activo: { type: Boolean, default: true }
+});
 
 var categorias = new Schema({
     nombre: { type: String, trim: true, required: true, index: { unique: true, sparse: true }},
     descripcion: { type: String},
-    activo: { type: Boolean, default: true },
-    fc : { type: Date, default: Date.now }
-})
+    activo: { type: Boolean, default: true }
+});
 
 exports.usuarios = mongoose.model( 'usuarios', usuarios );
 exports.categorias = mongoose.model( 'categorias', categorias );
