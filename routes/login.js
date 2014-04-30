@@ -16,7 +16,7 @@ module.exports = function (app) {
                 if (o !== null) {
                     req.session.usuario = o;
                 } else {
-                    res.render('login', { title: 'Hola' });
+                    res.render('login', { title: 'Bienvenid@s' });
                 }
             });
         }
@@ -28,6 +28,7 @@ module.exports = function (app) {
                 res.send(e, 400);
             } else {
                 req.session.usuario = o;
+                console.log(req.param('recordarme'));
                 if (req.param('recordarme') == 'true') {
                     res.cookie('usuario', o.usuario, { maxAge: 900000 });
                     res.cookie('clave', o.clave, { maxAge: 900000 });
