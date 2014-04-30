@@ -52,7 +52,15 @@ var usuarios = new Schema({
 })
 
 
+var categorias = new Schema({
+    nombre: { type: String, trim: true, required: true, index: { unique: true, sparse: true }},
+    descripcion: { type: String},
+    activo: { type: Boolean, default: true },
+    fc : { type: Date, default: Date.now }
+})
+
 exports.usuarios = mongoose.model( 'usuarios', usuarios );
+exports.categorias = mongoose.model( 'categorias', categorias );
 
 var connection = mongoose.connect('mongodb://127.0.0.1/inventariodb', function(err){
     if (err){

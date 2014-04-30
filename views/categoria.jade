@@ -1,0 +1,33 @@
+//
+   Created by cristobal on 04/07/14.
+
+
+extends layout
+
+block content
+    link(rel='stylesheet', href='/css/form-bootstrap.css')
+    include navbar
+
+    .container
+        form#producto.form-horizontal(method='POST', role='form')
+            fieldset
+                legend #{titulo}
+                input(name='_id', type='hidden', value='#{categoria._id}')
+                .form-group
+                    .input-group
+                        span.input-group-addon
+                            label(for='nombre') Nombre
+                        input#codigo.form-control(type='text',name='nombre', placeholder='Nombre de la Categoria', value='#{categoria.nombre}')
+                .form-group
+                    .input-group
+                        span.input-group-addon
+                            label(for='descripcion') Descripción
+                        input#descripcion.form-control(type='text',name='descripcion', placeholder='Descripción', value='#{categoria.descripcion}')
+
+                button.btn.btn-lg.btn-primary.btn-inline(type="submit") #{btn}
+
+
+block scripts
+    script(src='/vendor/jquery.form.min.js')
+    script(src='/js/views/categoria.js')
+    script(src='/js/controllers/CategoriaController.js')

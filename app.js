@@ -30,6 +30,7 @@ if ('development' == app.get('env')) {
 
 require('./routes/login')(app);
 require('./routes/productos')(app);
+require('./routes/categorias')(app);
 
 app.get('/inicio', routes.inicio);
 
