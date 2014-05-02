@@ -2,16 +2,16 @@
    Created by cristobal on 04/07/14.
 
 
-extends layout
+extends ../layout
 
 block content
     link(rel='stylesheet', href='/css/form-bootstrap.css')
-    include navbar
+    include ../navbar
 
     .container
         form#categoria.form-horizontal(method='POST', role='form')
             fieldset
-                legend #{titulo}
+                legend.text-muted #{titulo}
                 input(name='_id', type='hidden', value='#{categoria._id}')
                 .form-group
                     .input-group
@@ -22,9 +22,14 @@ block content
                     .input-group
                         span.input-group-addon
                             label(for='descripcion') Descripción
-                        input#descripcion.form-control(type='text',name='descripcion', placeholder='Descripción', value='#{categoria.descripcion}')
-
-                button.btn.btn-lg.btn-primary.btn-inline(type="submit") #{btn}
+                        textarea#descripcion.form-control( rows="3", name='descripcion', placeholder='Descripción', value='#{categoria.descripcion}')
+                .form-group
+                    .input-group
+                        span.input-group-addon
+                            input#activo(type="checkbox", name="activo", checked='#{categoria.activo}')
+                        input.form-control(type="text", readonly="true", value="Activo")
+                .form-group
+                    button.btn.btn-lg.btn-primary.btn-inline(type="submit") #{btn}
 
 
 block scripts

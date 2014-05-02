@@ -16,8 +16,8 @@ module.exports = function (app) {
         if (req.cookies.usuario === undefined || req.cookies.clave=== undefined)
             res.redirect('/');
         else{
-            res.clearCookie('user');
-		    res.clearCookie('pass');
+            res.clearCookie('usuario');
+		    res.clearCookie('clave');
 		    req.session.destroy(function(e){ res.send('ok', 200); });
         }
     });

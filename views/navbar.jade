@@ -12,7 +12,7 @@ nav.navbar.navbar-default(role='navigation')
             a.navbar-brand(href='#') Inventario
         #menu.collapse.navbar-collapse
             ul.nav.navbar-nav
-                li.active
+                li
                     a(href='./ventas') Ventas
                 li
                     a(href='./compras') Compras
@@ -21,14 +21,29 @@ nav.navbar.navbar-default(role='navigation')
                         | Configuraciones
                         b.caret
                     ul.dropdown-menu
-                        li
-                            a(href='./producto') Productos
+                        li.dropdown-submenu
+                            a(href='#') Productos
+                            ul.dropdown-menu
+                                li
+                                    a(href='./producto') Agegar
+                                    a(href='#') Lista
+                        li.dropdown-submenu
+                            a(href='#') Categorias
+                            ul.dropdown-menu
+                                li
+                                    a(href='./categoria') Agegar
+                                    a(href='#') Lista
+
             ul.nav.navbar-nav.navbar-right
                 li
                     a.logout
                         | Salir
                         b.glyphicon.glyphicon-log-out
 
+
 include modals/alert
 include modals/confirm
+
+script(src='/js/views/inicio.js')
+script(src='/js/controllers/InicioController.js')
 

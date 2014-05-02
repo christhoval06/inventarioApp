@@ -11,9 +11,9 @@ $(document).ready(function () {
 		$.ajax({
 			url: "/logout",
 			type: "GET",
-			data: {logout : true},
+			data: {},
 			success: function(data){
-	 			that.showLockedAlert("Success!!",'You are now logged out.<br>Redirecting you back to the homepage.');
+	 			that.showLockedAlert("Success!!",'Has Finalizado la Sesión.<br>Redireciaonado al inicio.');
 			},
 			error: function(jqXHR){
 				console.log(jqXHR.responseText+' :: '+jqXHR.statusText);

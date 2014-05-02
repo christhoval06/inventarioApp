@@ -49,13 +49,15 @@ var usuarios = new Schema({
     nombre: { type: String, required: true},
     clave: { type: String, required: true},
     tipo: { type: Number, min: 0, max: 7, default: 0 },
-    activo: { type: Boolean, default: true }
+    activo: { type: Boolean, default: true },
+    fc : { type: Date, default: Date.now }
 });
 
 var categorias = new Schema({
     nombre: { type: String, trim: true, required: true, index: { unique: true, sparse: true }},
     descripcion: { type: String},
-    activo: { type: Boolean, default: true }
+    activo: { type: Boolean, default: true },
+    fc : { type: Date, default: Date.now }
 });
 
 exports.usuarios = mongoose.model( 'usuarios', usuarios );
