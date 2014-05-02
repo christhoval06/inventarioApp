@@ -11,6 +11,7 @@ var mongodb = require('./mongodb'),
 /* métodos de  inserción, actualización & borrado */
 
 exports.agregarCategoria = function (data, callback) {
+    console.log(data);
     categorias.findOne({nombre: data.nombre}, function (e, o) {
             if (o) {
                 o.nombre = data.nombre;
@@ -23,6 +24,16 @@ exports.agregarCategoria = function (data, callback) {
         });
 }
 
+exports.editarCategoria = function (_id, callback) {
+    categorias.findOne({_id: _id}, function (e, o) {
+            if (o) {
+                callback(o);
+            } else {
+               callback(null);
+            }
+        });
+}
+
 exports.listaCategorias = function(callback){
     categorias.find({}, function(err, docs) {
             if (!err){
@@ -30,7 +41,7 @@ exports.listaCategorias = function(callback){
             }
             else {
                 throw err;
-                callback('error-cargando-lista');
+                callback(null);
             }
         });
 }
