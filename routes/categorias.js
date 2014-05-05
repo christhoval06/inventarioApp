@@ -14,12 +14,12 @@ module.exports = function (app) {
             if(req.params.id)
                 categoriasManager.editarCategoria(req.params.id,function(data){
                     if(data)
-                       res.render('./categoria/editor', {categoria: data, btn: 'Actualizar', titulo: "Categoria: " + data.nombre})
+                       res.render('./categoria/categoria', {categoria: data, btn: 'Actualizar', titulo: "Categoria: " + data.nombre})
                     else
-                        res.render('./categoria/editor', {categoria:{_id:0, nombre: '', descripcion: '', activo: true}, btn: 'Guardar', titulo: "Nueva Categoria"})
+                        res.render('./categoria/categoria', {categoria:{_id:0, nombre: '', descripcion: '', activo: true}, btn: 'Guardar', titulo: "Nueva Categoria"})
                 });
             else
-                res.render('./categoria/editor', {categoria:{_id:0, nombre: '', descripcion: '', activo: true}, btn: 'Guardar', titulo: "Nueva Categoria"})
+                res.render('./categoria/categoria', {categoria:{_id:0, nombre: '', descripcion: '', activo: true}, btn: 'Guardar', titulo: "Nueva Categoria"})
         }
     });
 

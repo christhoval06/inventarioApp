@@ -10,7 +10,7 @@ module.exports = function (app) {
         if (req.cookies.usuario === undefined || req.cookies.clave=== undefined) {
             res.redirect('/');
         } else {
-            res.render('producto', {producto:{id:0, codigo: '', descripcion: '', costo:'0.00', inventario:'', vendidos: '', comprados:''}, btn: 'Guardar'})
+            res.render('./producto/producto', {producto: {id:0, codigo: '', descripcion: '', costo:'0.00', inventario:'', vendidos: '', comprados:''}, btn: 'Guardar'})
         }
     });
 }
