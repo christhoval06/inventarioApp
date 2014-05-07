@@ -35,11 +35,11 @@ module.exports = function (app) {
         if (req.cookies.usuario === undefined || req.cookies.clave === undefined)
             res.redirect('/');
         else
-            productosManager.agregarProductos(req.body, function (e) {
+            productosManager.agregarProductos(req.body, function (e, p) {
                 res.contentType('json');
                 res.setHeader('Content-Type', 'text/json');
                 if (e) res.json({success: false, error: e.message});
-                else  res.json({success: true, msg: "OK"});
+                else  res.json({success: true, msg: "OK", producto: p});
             });
     });
 

@@ -48,7 +48,7 @@ var usuarios = new Schema({
         usuario: { type: String, lowercase: true, trim: true, required: true, index: { unique: true, sparse: true }},
         nombre: { type: String, required: true},
         clave: { type: String, required: true},
-        tipo: { type: Number, min: 0, max: 7, default: 0 },
+        tipo: { type: Number, min: 0, max: 7, default: '0' },
         activo: { type: Boolean, default: true },
         fc : { type: Date, default: Date.now }
     }),
@@ -61,10 +61,10 @@ var usuarios = new Schema({
     productos = new Schema({
         codigo: { type: String, trim: true, required: true, index: { unique: true, sparse: true }},
         descripcion: { type: String, required: true},
-        costo: { type: Number, default: 0 },
-        inventario: { type: Number, default: 0 },
-        vendidos: { type: Number, default: 0 },
-        comprados: { type: Number, default: 0 },
+        costo: { type: Number, default: '0' },
+        inventario: { type: Number, default: '0' },
+        vendidos: { type: Number, default: '0' },
+        comprados: { type: Number, default: '0' },
         categoriaid    : { type: ObjectId, ref: 'categorias', default: null},
         activo: { type: Boolean, default: true },
         fc : { type: Date, default: Date.now }
@@ -75,6 +75,7 @@ var usuarios = new Schema({
 exports.usuarios = mongoose.model( 'usuarios', usuarios );
 exports.categorias = mongoose.model( 'categorias', categorias );
 exports.productos = mongoose.model( 'productos', productos );
+exports.ObjectId = ObjectId;
 
 var connection = mongoose.connect('mongodb://127.0.0.1/inventariodb', function(err){
     if (err){

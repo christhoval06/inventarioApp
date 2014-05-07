@@ -28,10 +28,7 @@ block content
                             label(for='categoriaid') Categoria
                         select.form-control(name="categoriaid", id="categoriaid")
                             each c in categorias
-                                if(producto.categoriaid == c._id)
-                                      option(value="#{c._id}", selected=true) #{c.nombre}
-                                else
-                                    option(value="#{c._id}") #{c.nombre}
+                                option(value="#{c._id}", selected=c.selected) #{c.nombre}
                 .form-group
                     .input-group
                         span.input-group-addon
