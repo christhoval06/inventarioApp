@@ -24,16 +24,14 @@ module.exports = function (app) {
     });
 
     app.post('/', function (req, res) {
-        console.log("/");
         cuentasManager.manualLogin(req.param('usuario'), req.param('clave'), function (e, o) {
-            console.log("//");
             if (!o) {
                 res.send(e, 400);
             } else {
                 req.session.usuario = o;
                 if (req.param('recordarme') == 'true') {
-                    res.cookie('usuario', o.usuario, { maxAge: 900000 });
-                    res.cookie('clave', o.clave, { maxAge: 900000 });
+                    res.cookie('usuario', o.usuario, { path: '/', maxAge: 30*24*60*60*1000, httpOnly: true, expire: false});
+                    res.cookie('clave', o.clave, { path: '/', maxAge: 30*24*60*60*1000, httpOnly: true, expire: false});
                 }
                 res.send(o, 200);
             }

@@ -66,6 +66,7 @@ var usuarios = new Schema({
         vendidos: { type: Number, default: 0 },
         comprados: { type: Number, default: 0 },
         categoriaid    : { type: ObjectId, ref: 'categorias', default: null},
+        activo: { type: Boolean, default: true },
         fc : { type: Date, default: Date.now }
 
     });

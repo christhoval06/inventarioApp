@@ -11,7 +11,6 @@ var mongodb = require('./mongodb'),
 /* métodos de  inserción, actualización & borrado */
 
 exports.agregarCategoria = function (data, callback) {
-    console.log(data);
     categorias.findOne({nombre: data.nombre}, function (e, o) {
             if (o) {
                 o.nombre = data.nombre;

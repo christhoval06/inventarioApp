@@ -28,15 +28,15 @@ module.exports = function (app) {
         if (req.cookies.usuario === undefined || req.cookies.clave=== undefined)
             res.redirect('/');
         else
-        console.log(req.param("activo") ? true : false);
             categoriasManager.agregarCategoria({
                 nombre: req.param("nombre"),
                 descripcion: req.param("descripcion"),
                 activo: req.param("activo") ? true : false
             },function (e) {
                 res.contentType('json');
-                if (e) res.json({success: false, error: e});
-                else  res.json({success: true});
+                res.setHeader('Content-Type', 'text/json');
+                if (e) res.json({success: false, error: e.message});
+                else  res.json({success: true, msg: "OK"});
             });
     });
 
