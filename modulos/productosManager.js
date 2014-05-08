@@ -18,9 +18,8 @@ exports.nuevoProducto = function (callback, data) {
             for (var i in docs) {
                 var c = {};
                 c._id = docs[i]._id;
-                c.nombre = docs[i].nombre
-                if (c._id.equals(data.producto.categoriaid)) c.selected = true;
-                else c.selected = false;
+                c.nombre = docs[i].nombre;
+                c.selected = data.producto.categoriaid != 0 ? (c._id.equals(data.producto.categoriaid) ? true : false) : false;
                 Categorias.push(c);
             }
             data.categorias = Categorias;
