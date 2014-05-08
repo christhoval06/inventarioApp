@@ -23,12 +23,11 @@ exports.nuevoProducto = function (callback, data) {
                 Categorias.push(c);
             }
             data.categorias = Categorias;
-            callback(data);
         } else {
             throw err;
             data.categorias = [];
-            callback(data);
         }
+        callback(data);
     });
 }
 
