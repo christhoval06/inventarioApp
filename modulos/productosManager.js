@@ -6,8 +6,7 @@
 var mongodb = require('./mongodb'),
     db = mongodb.inventariodb,
     productos = db.model('productos'),
-    categorias = db.model('categorias'),
-    ObjectId = db.ObjectId;
+    categorias = db.model('categorias');
 
 
 exports.nuevoProducto = function (callback, data) {
@@ -43,26 +42,17 @@ exports.agregarProductos = function (data, callback) {
     data.categoriaid = data.categoriaid;
     data.activo = data.activo ? true : false;
     productos.findOne({_id: data._id}, function (e, o) {
-        if (o) {
-            console.log("update");
-            delete data._id;
-            productos.update({ _id: o._id }, { $set: data}, callback);
-        } else {
-            console.log("add");
-            delete data._id;
-            (new productos(data)).save(data, callback);
-        }
+        delete data._id;
+        if (o) productos.update({ _id: o._id }, { $set: data}, callback);
+        else (new productos(data)).save(data, callback);
     });
 }
 
 exports.editarProductos = function (_id, callback) {
     var self = this;
     productos.findOne({_id: _id}, function (e, o) {
-        if (o) {
-            self.nuevoProducto(callback, {producto: o, btn: 'Actualizar', titulo: "Categoria: " + o.codigo});
-        } else {
-            self.nuevoProducto(callback);
-        }
+        if (o) self.nuevoProducto(callback, {producto: o, btn: 'Actualizar', titulo: "Producto: " + o.codigo});
+        else  self.nuevoProducto(callback);
     });
 }
 

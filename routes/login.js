@@ -7,15 +7,23 @@ var moment = require('moment');
 
 module.exports = function (app) {
 
+    console.log("login");
+
     app.get('/', function (req, res) {
+        console.log("en el inicio de los tiempos");
         // verifica si los datos del usuario estan guardados en las cookies
         if (req.cookies.usuario === undefined || req.cookies.clave=== undefined) {
-             res.render('login', { title: 'Hola' });
+            console.log("no esta el cookie");
+             res.render('login', { title: 'Bienvenid@s' });
         } else {
             // login automatico
+            console.log("en el cookie");
             cuentasManager.autoLogin(req.cookies.usuario, req.cookies.clave, function (o) {
+                console.log(o);
                 if (o !== null) {
                     req.session.usuario = o;
+                    res.redirect('/inicio');
+
                 } else {
                     res.render('login', { title: 'Bienvenid@s' });
                 }

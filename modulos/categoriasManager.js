@@ -8,40 +8,43 @@ var mongodb = require('./mongodb'),
     categorias = db.model('categorias');
 
 
+exports.nuevaCategoria = function (callback, data) {
+    callback(data || {titulo: "Nueva Categoria", categoria: {id: 0, nombre: '', descripcion: '', activo: true}, btn: 'Guardar'});
+}
+
+
 /* métodos de  inserción, actualización & borrado */
 
 exports.agregarCategoria = function (data, callback) {
-    categorias.findOne({nombre: data.nombre}, function (e, o) {
-            if (o) {
-                o.nombre = data.nombre;
-                o.descripcion = data.descripcion;
-                o.activo = data.activo;
-                o.save(callback);
-            } else {
-               (new categorias(data)).save(data, callback);
-            }
-        });
+    nombre = data.nombre;
+    descripcion = data.descripcion;
+    activo = data.activo ? true : false;
+    categorias.findOne({_id: data._id}, function (e, o) {
+        if (o) {
+            delete data._id;
+            categorias.update({ _id: o._id }, { $set: data}, callback);
+        } else {
+            delete data._id;
+            (new categorias(data)).save(data, callback);
+        }
+    });
 }
 
 exports.editarCategoria = function (_id, callback) {
+    var self = this;
     categorias.findOne({_id: _id}, function (e, o) {
-            if (o) {
-                callback(o);
-            } else {
-               callback(null);
-            }
-        });
+        if (o) self.nuevaCategoria(callback, {categoria: o, btn: 'Actualizar', titulo: "Categoria: " + o.nombre});
+        else  self.nuevaCategoria(callback);
+    });
 }
 
-exports.listaCategorias = function(callback){
-    categorias.find({}, function(err, docs) {
-            if (!err){
-                callback(docs);
-            }
-            else {
-                throw err;
-                callback(null);
-            }
-        });
+exports.listaCategorias = function (callback) {
+    categorias.find({}, function (err, docs) {
+        if (!err) callback(docs);
+        else {
+            throw err;
+            callback(null);
+        }
+    });
 }
 

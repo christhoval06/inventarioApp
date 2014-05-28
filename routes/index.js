@@ -4,6 +4,8 @@
 
 module.exports = function (app) {
 
+    console.log("index");
+
     app.get('/inicio', function (req, res) {
         // verifica si los datos del usuario estan guardados en las cookies
         if (req.cookies.usuario === undefined || req.cookies.clave=== undefined)

@@ -9,21 +9,26 @@ block content
     include ../navbar
 
     .container
-        h1 #{titulo}
-        table.table
-            thead
-                tr
-                    th #
-                    th Nombre
-                    th
-                    th
-            tbody
-                each categoria, i in categorias
+        if success
+            h1 #{titulo}
+            table.table
+                thead
                     tr
-                        td #{(i+1)}
-                        td #{categoria.nombre}
-                        td
-                            a.btn.btn-primary(href="./categoria/#{categoria._id}") Editar
-                        td
-                            a.btn.btn-danger(href="#") Eliminar
+                        th #
+                        th Nombre
+                        th
+                        th
+                tbody
+                    each categoria, i in categorias
+                        tr
+                            td #{(i+1)}
+                            td #{categoria.nombre}
+                            td
+                                a.btn.btn-primary(href="./categoria/#{categoria._id}") Editar
+                            td
+                                a.btn.btn-danger(href="#") Eliminar
+        else
+            .alert.alert-warning
+                button.close(type="button", data-dismiss="alert", aria-hidden="true") &times
+                h1 No hay categorias en el sistema.
 
