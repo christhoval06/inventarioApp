@@ -2,7 +2,8 @@
  * Created by cristobal on 04/07/14.
  */
 
-var productosManager = require('../modulos/productosManager');
+var productosManager = require('../modulos/productosManager'),
+    msgMgr = require('../modulos/messagesManager');
 
 module.exports = function (app) {
 
@@ -34,26 +35,35 @@ module.exports = function (app) {
         // verifica si los datos del usuario estan guardados en las cookies
         if (req.cookies.usuario === undefined || req.cookies.clave === undefined)
             res.redirect('/');
-        else
+        else{
+            var code = req.body._id == '0' ? 'p02' : 'p03';
             productosManager.agregarProductos(req.body, function (e, p) {
                 res.contentType('json');
                 res.setHeader('Content-Type', 'text/json');
-                if (e) res.json({success: false, error: e.message});
-                else  res.json({success: true, msg: "OK", producto: p});
+                if (e) res.json({success: false, error: e.message, code: 0});
+                else  res.json({success: true, code: code});
             });
+        }
     });
 
 
-    app.get('/productos', function (req, res) {
+    app.get('/productos/:msg?', function (req, res) {
         // verifica si los datos del usuario estan guardados en las cookies
         if (req.cookies.usuario === undefined || req.cookies.clave === undefined)
             res.redirect('/');
         else {
             productosManager.listaProductos(function (data) {
-                if (data)
-                    res.render('./producto/lista', {productos: data, titulo: "lista de Productos"});
-                else
-                    res.render('inicio', {msg: "error-cargar-lista-categorias"});
+                res.render('./producto/lista', {productos: data, titulo: "lista de Productos", success: data.length > 0, msg: {is:!(!req.params.msg), msg: msgMgr.getMessage(req.params.msg) }});
+            });
+        }
+    });
+
+     app.get('/producto/:id/delete', function (req, res) {
+        if (req.cookies.usuario === undefined || req.cookies.clave === undefined)
+            res.redirect('/');
+        else {
+            productosManager.borrarProducto(req.params.id, function (data) {
+                res.redirect("/productos/" + data.msg);
             });
         }
     });

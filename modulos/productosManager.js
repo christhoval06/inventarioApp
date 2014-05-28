@@ -10,7 +10,7 @@ var mongodb = require('./mongodb'),
 
 
 exports.nuevoProducto = function (callback, data) {
-    var data = data || {titulo: "Nuevo Producto", producto: {id: 0, codigo: '', descripcion: '', costo: '0.00', inventario: '', vendidos: '', comprados: '', categoriaid: 0, activo: true}, btn: 'Guardar'};
+    var data = data || {titulo: "Nuevo Producto", producto: {id: 0, codigo: '', descripcion: '', costo: '0.00', inventario: '0', vendidos: '0', comprados: '0', categoriaid: 0, activo: true}, btn: 'Guardar'};
     categorias.find({activo: true}, {nombre: 1}, function (err, docs) {
         if (!err) {
             var Categorias = [];
@@ -44,7 +44,7 @@ exports.agregarProductos = function (data, callback) {
     productos.findOne({_id: data._id}, function (e, o) {
         delete data._id;
         if (o) productos.update({ _id: o._id }, { $set: data}, callback);
-        else (new productos(data)).save(data, callback);
+        else (new productos(data)).save(callback);
     });
 }
 
@@ -64,6 +64,16 @@ exports.listaProductos = function (callback) {
         else {
             throw err;
             callback(null);
+        }
+    });
+}
+
+exports.borrarProducto = function (_id, callback) {
+    productos.remove({_id: _id}, function (err) {
+        if (!err) callback({success: true, msg: 'p01'});
+        else {
+            throw err;
+            callback({success: false, msg: 'p00'});
         }
     });
 }

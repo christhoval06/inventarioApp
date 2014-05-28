@@ -9,7 +9,10 @@ $(document).ready(function () {
 
     $('form#producto').ajaxForm({
         beforeSubmit: function (formData, jqForm, options) {},
-        success: function (responseText, status, xhr, $form) {},
+        success: function (data, status, xhr, $form) {
+            if(data.success) window.location.href = '/productos/' + data.code
+            else console.log(data.error);
+        },
         error: function (e) { }
     });
     $('form#producto #codigo').focus();

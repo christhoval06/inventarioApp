@@ -29,7 +29,9 @@ block content
                             input#activo(type="checkbox", name="activo", checked=categoria.activo)
                         input.form-control(type="text", readonly="true", value="Activo")
                 .form-group
-                    button.btn.btn-lg.btn-primary.btn-inline(type="submit") #{btn}
+                    button.btn.btn-lg.btn-success.btn-inline(type="submit") #{btn}
+                    if del
+                        a.btn.btn-danger.btn-lg.btn-inline(href="/categoria/#{categoria._id}/delete") Eliminar
 
 
 block scripts

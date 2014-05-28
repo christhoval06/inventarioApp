@@ -9,11 +9,11 @@ $(document).ready(function () {
 
     $('form#categoria').ajaxForm({
         beforeSubmit: function (formData, jqForm, options) {
-            console.log(formData);
             return true;
         },
-        success: function (responseText, status, xhr, $form) {
-            if (status == 'success') console.log("YES");
+        success: function (data, status, xhr, $form) {
+            if(data.success) window.location.href = '/categorias/' + data.code
+            else console.log(data.error);
         },
         error: function (e) {
             console.log("ERROR");

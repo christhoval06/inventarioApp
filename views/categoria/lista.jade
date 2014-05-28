@@ -6,9 +6,18 @@ extends ../layout
 
 block content
     link(rel='stylesheet', href='/css/form-bootstrap.css')
+    link(rel='stylesheet', href='/css/timed-notifications.css')
     include ../navbar
 
     .container
+        if msg.is
+            //.alert.alert-success
+            //    button.close(type="button", data-dismiss="alert", aria-hidden="true") &times
+            //    h3 #{msg.msg}
+            .tn-box.tn-box-color-2.tn-box-active
+                p #{msg.msg}
+                .tn-progress
+
         if success
             h1 #{titulo}
             table.table
@@ -24,11 +33,11 @@ block content
                             td #{(i+1)}
                             td #{categoria.nombre}
                             td
-                                a.btn.btn-primary(href="./categoria/#{categoria._id}") Editar
+                                a.btn.btn-primary(href="/categoria/#{categoria._id}") Editar
                             td
-                                a.btn.btn-danger(href="#") Eliminar
+                                a.btn.btn-danger(href="/categoria/#{categoria._id}/delete") Eliminar
         else
             .alert.alert-warning
                 button.close(type="button", data-dismiss="alert", aria-hidden="true") &times
-                h1 No hay categorias en el sistema.
+                h3 No hay categorias en el sistema.
 

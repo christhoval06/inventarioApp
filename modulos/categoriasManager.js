@@ -9,7 +9,7 @@ var mongodb = require('./mongodb'),
 
 
 exports.nuevaCategoria = function (callback, data) {
-    callback(data || {titulo: "Nueva Categoria", categoria: {id: 0, nombre: '', descripcion: '', activo: true}, btn: 'Guardar'});
+    callback(data || {titulo: "Nueva Categoria", categoria: {_id: 0, nombre: '', descripcion: '', activo: true}, btn: 'Guardar', del: false});
 }
 
 
@@ -25,7 +25,7 @@ exports.agregarCategoria = function (data, callback) {
             categorias.update({ _id: o._id }, { $set: data}, callback);
         } else {
             delete data._id;
-            (new categorias(data)).save(data, callback);
+            (new categorias(data)).save(callback);
         }
     });
 }
@@ -33,7 +33,7 @@ exports.agregarCategoria = function (data, callback) {
 exports.editarCategoria = function (_id, callback) {
     var self = this;
     categorias.findOne({_id: _id}, function (e, o) {
-        if (o) self.nuevaCategoria(callback, {categoria: o, btn: 'Actualizar', titulo: "Categoria: " + o.nombre});
+        if (o) self.nuevaCategoria(callback, {categoria: o, btn: 'Actualizar', titulo: "Categoria: " + o.nombre, del: true});
         else  self.nuevaCategoria(callback);
     });
 }
@@ -47,4 +47,16 @@ exports.listaCategorias = function (callback) {
         }
     });
 }
+
+
+exports.borrarCategorias = function (_id, callback) {
+    categorias.remove({_id: _id}, function (err) {
+        if (!err) callback({success: true, msg: 'c01'});
+        else {
+            throw err;
+            callback({success: false, msg: 'c00'});
+        }
+    });
+}
+
 
