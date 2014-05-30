@@ -77,7 +77,9 @@ exports.categorias = mongoose.model( 'categorias', categorias );
 exports.productos = mongoose.model( 'productos', productos );
 exports.ObjectId = ObjectId;
 
-var connection = mongoose.connect('mongodb://127.0.0.1/inventariodb', function(err){
+//var conDB = 'mongodb://christhoval:c706180t@ds053497.mongolab.com:53497/inventariodb';
+var conDB = 'mongodb://127.0.0.1/inventariodb';
+var connection = mongoose.connect(conDB, function(err){
     if (err){
         console.log(err.message);
         throw err;

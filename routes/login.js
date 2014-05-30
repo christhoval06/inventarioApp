@@ -3,10 +3,10 @@
  */
 
 var cuentasManager = require('../modulos/cuentasManager');
-var moment = require('moment');
-
 module.exports = function (app) {
+
     app.get('/', function (req, res) {
+        console.log(req.cookies);
         // verifica si los datos del usuario estan guardados en las cookies
         if (req.cookies.usuario === undefined || req.cookies.clave=== undefined) {
              res.render('login', { title: 'Bienvenid@s' });

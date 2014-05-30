@@ -13,6 +13,7 @@ $(document).ready(function () {
 			type: "GET",
 			data: {},
 			success: function(data){
+                alert(data);
 	 			that.showLockedAlert("Success!!",'Has Finalizado la Sesión.<br>Redireciaonado al inicio.');
 			},
 			error: function(jqXHR){
