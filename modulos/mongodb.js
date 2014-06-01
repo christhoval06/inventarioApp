@@ -69,12 +69,22 @@ var usuarios = new Schema({
         activo: { type: Boolean, default: true },
         fc : { type: Date, default: Date.now }
 
-    });
+    }),
+    ventas = new Schema({
+        fecha: { type: Date, default: Date.now, required: true },
+        descripcion: { type: String, required: true},
+        productos: [{productoid: { type: ObjectId, ref: 'productos', default: null}, cantidad: { type: Number, default: '0' }, costo: { type: Number, default: '0' }}],
+        nota: { type: String, default: ''},
+        activo: { type: Boolean, default: true },
+        fc : { type: Date, default: Date.now }
+
+    });;
 
 
 exports.usuarios = mongoose.model( 'usuarios', usuarios );
 exports.categorias = mongoose.model( 'categorias', categorias );
 exports.productos = mongoose.model( 'productos', productos );
+exports.ventas = mongoose.model( 'ventas', ventas );
 exports.ObjectId = ObjectId;
 
 //var conDB = 'mongodb://christhoval:c706180t@ds053497.mongolab.com:53497/inventariodb';

@@ -1,0 +1,45 @@
+//
+   Created by cristobal on 05/02/14.
+
+
+extends ../layout
+
+block content
+    link(rel='stylesheet', href='/css/form-bootstrap.css')
+    link(rel='stylesheet', href='/css/timed-notifications.css')
+    include ../navbar
+
+    .container
+        if msg.is
+            //.alert.alert-success
+            //    button.close(type="button", data-dismiss="alert", aria-hidden="true") &times
+            //    h3 #{msg.msg}
+            .tn-box.tn-box-color-2.tn-box-active
+                p #{msg.msg}
+                .tn-progress
+        if success
+            h1 #{titulo}
+            table.table
+                thead
+                    tr
+                        th #
+                        th Codigo
+                        th Descripcion
+                        th Inventario
+                        th
+                        th
+                tbody
+                    each producto, i in productos
+                        tr
+                            td #{(i+1)}
+                            td #{producto.codigo}
+                            td #{producto.descripcion}
+                            td #{producto.inventario}
+                            td
+                                a.btn.btn-primary(href="/producto/#{producto._id}") Editar
+                            td
+                                a.btn.btn-danger(href="/producto/#{producto._id}/delete") Eliminar
+        else
+            .alert.alert-warning
+                button.close(type="button", data-dismiss="alert", aria-hidden="true") &times
+                h3 No hay productos en el sistema.
